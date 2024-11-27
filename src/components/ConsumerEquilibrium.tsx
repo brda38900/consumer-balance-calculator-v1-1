@@ -7,11 +7,11 @@ import { toast } from "sonner";
 
 const ConsumerEquilibrium = () => {
   const [input, setInput] = useState({
-    x2Coefficient: 2,
-    y2Coefficient: 4,
-    income: 100,
-    priceX: 10,
-    priceY: 20,
+    x2Coefficient: 2, // معامل س²
+    y2Coefficient: 4, // معامل ص²
+    income: 100, // الدخل
+    priceX: 6, // سعر س
+    priceY: 15, // سعر ص
   });
 
   const [result, setResult] = useState(() => calculateEquilibrium(input));
