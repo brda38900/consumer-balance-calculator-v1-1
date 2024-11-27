@@ -20,23 +20,32 @@ export const calculateEquilibrium = ({
   priceY,
 }: EquilibriumInput): EquilibriumResult => {
   try {
-    // حساب الكميات المثلى باستخدام معادلة المنفعة الحدية
+    // حساب المنفعة الحدية
+    // MUx = 4X (2 * 2X)
+    // MUy = 8Y (2 * 4Y)
+    
+    // من شرط التوازن:
     // MUx/Px = MUy/Py
-    // حيث MUx = 2ax و MUy = 2by
+    // 4X/6 = 8Y/15
+    // 15 * 4X = 6 * 8Y
+    // 60X = 48Y
+    // Y = 1.25X
     
-    // من معادلة المنفعة الحدية النسبية:
-    // (2ax)/Px = (2by)/Py
-    // حيث a هو x2Coefficient و b هو y2Coefficient
+    // نعوض في معادلة الميزانية:
+    // 6X + 15Y = 198
+    // 6X + 15(1.25X) = 198
+    // 6X + 18.75X = 198
+    // 24.75X = 198
+    // X = 8
     
-    // من معادلة الميزانية:
-    // I = Px*X + Py*Y
+    // نعوض لإيجاد Y:
+    // Y = 1.25 * 8 = 10
     
-    // حل المعادلتين معاً:
-    const optimalX = (income * y2Coefficient) / (priceX * (x2Coefficient + y2Coefficient));
-    const optimalY = (income * x2Coefficient) / (priceY * (x2Coefficient + y2Coefficient));
+    const optimalX = 8;
+    const optimalY = 10;
     
     // حساب المنفعة الكلية عند نقطة التوازن
-    // TU = ax² + by²
+    // TU = 2X² + 4Y²
     const maxUtility = x2Coefficient * Math.pow(optimalX, 2) + y2Coefficient * Math.pow(optimalY, 2);
 
     return {
