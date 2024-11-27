@@ -9,7 +9,7 @@ const ConsumerEquilibrium = () => {
   const [input, setInput] = useState({
     x2Coefficient: 2, // معامل س²
     y2Coefficient: 4, // معامل ص²
-    income: 100, // الدخل
+    income: 198, // الدخل
     priceX: 6, // سعر س
     priceY: 15, // سعر ص
   });
