@@ -1,15 +1,15 @@
 export interface EquilibriumInput {
-  x2Coefficient: number;
-  y2Coefficient: number;
-  income: number;
-  priceX: number;
-  priceY: number;
+  x2Coefficient: number; // معامل س²
+  y2Coefficient: number; // معامل ص²
+  income: number; // الدخل
+  priceX: number; // سعر س
+  priceY: number; // سعر ص
 }
 
 export interface EquilibriumResult {
-  optimalX: number;
-  optimalY: number;
-  maxUtility: number;
+  optimalX: number; // الكمية المثلى لـ س
+  optimalY: number; // الكمية المثلى لـ ص
+  maxUtility: number; // أقصى منفعة
 }
 
 export const calculateEquilibrium = ({
@@ -19,9 +19,9 @@ export const calculateEquilibrium = ({
   priceX,
   priceY,
 }: EquilibriumInput): EquilibriumResult => {
-  // Calculate optimal quantities using the marginal utility equation
+  // حساب الكميات المثلى باستخدام معادلة المنفعة الحدية
   // MUx/Px = MUy/Py
-  // For U = ax² + by², MUx = 2ax and MUy = 2by
+  // لدالة المنفعة U = ax² + by², MUx = 2ax و MUy = 2by
   
   const optimalX = (income * y2Coefficient) / (priceX * (x2Coefficient + y2Coefficient));
   const optimalY = (income * x2Coefficient) / (priceY * (x2Coefficient + y2Coefficient));

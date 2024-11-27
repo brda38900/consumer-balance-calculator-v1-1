@@ -25,7 +25,7 @@ const ConsumerEquilibrium = () => {
       const newResult = calculateEquilibrium(newInput);
       setResult(newResult);
     } catch (error) {
-      toast.error("Please check your input values");
+      toast.error("الرجاء التحقق من القيم المدخلة");
     }
   };
 
@@ -34,10 +34,10 @@ const ConsumerEquilibrium = () => {
       <div className="max-w-3xl mx-auto space-y-8 animate-fadeIn">
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-            Consumer Equilibrium Calculator
+            حاسبة توازن المستهلك
           </h1>
           <p className="text-gray-500">
-            Calculate optimal quantities for maximum utility
+            حساب الكميات المثلى لتحقيق أقصى منفعة
           </p>
         </div>
 
@@ -45,7 +45,7 @@ const ConsumerEquilibrium = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="x2Coefficient">X² Coefficient</Label>
+                <Label htmlFor="x2Coefficient">معامل س²</Label>
                 <Input
                   id="x2Coefficient"
                   type="number"
@@ -55,7 +55,7 @@ const ConsumerEquilibrium = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="y2Coefficient">Y² Coefficient</Label>
+                <Label htmlFor="y2Coefficient">معامل ص²</Label>
                 <Input
                   id="y2Coefficient"
                   type="number"
@@ -65,7 +65,7 @@ const ConsumerEquilibrium = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="income">Income</Label>
+                <Label htmlFor="income">الدخل</Label>
                 <Input
                   id="income"
                   type="number"
@@ -78,7 +78,7 @@ const ConsumerEquilibrium = () => {
 
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="priceX">Price of X</Label>
+                <Label htmlFor="priceX">سعر س</Label>
                 <Input
                   id="priceX"
                   type="number"
@@ -88,7 +88,7 @@ const ConsumerEquilibrium = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="priceY">Price of Y</Label>
+                <Label htmlFor="priceY">سعر ص</Label>
                 <Input
                   id="priceY"
                   type="number"
@@ -104,15 +104,15 @@ const ConsumerEquilibrium = () => {
         <Card className="p-6 bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg rounded-xl animate-slideIn">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-500">Optimal X</p>
+              <p className="text-sm font-medium text-gray-500">الكمية المثلى لـ س</p>
               <p className="text-3xl font-bold text-gray-900">{result.optimalX}</p>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-500">Optimal Y</p>
+              <p className="text-sm font-medium text-gray-500">الكمية المثلى لـ ص</p>
               <p className="text-3xl font-bold text-gray-900">{result.optimalY}</p>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-500">Maximum Utility</p>
+              <p className="text-sm font-medium text-gray-500">أقصى منفعة</p>
               <p className="text-3xl font-bold text-gray-900">{result.maxUtility}</p>
             </div>
           </div>
