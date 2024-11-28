@@ -41,14 +41,14 @@ const ConsumerEquilibrium = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-purple-100 py-12 px-4 sm:px-6 lg:px-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="max-w-4xl mx-auto space-y-8 animate-fadeIn">
-        <div className="flex justify-between items-center bg-white/80 p-6 rounded-xl shadow-sm">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="max-w-3xl mx-auto space-y-8 animate-fadeIn">
+        <div className="flex justify-between items-center">
           <div className="text-center space-y-2">
-            <h1 className="text-4xl font-bold text-purple-900 tracking-tight">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               {t("حاسبة توازن المستهلك", "Consumer Equilibrium Calculator")}
             </h1>
-            <p className="text-purple-600">
+            <p className="text-gray-500">
               {t("حساب الكميات المثلى لتحقيق أقصى منفعة", "Calculate optimal quantities for maximum utility")}
             </p>
           </div>
@@ -56,82 +56,72 @@ const ConsumerEquilibrium = () => {
             variant="outline"
             size="icon"
             onClick={toggleLanguage}
-            className="rounded-full hover:bg-purple-100 transition-colors"
+            className="rounded-full"
           >
-            <Languages className="h-5 w-5 text-purple-700" />
+            <Languages className="h-4 w-4" />
           </Button>
         </div>
 
-        <Card className="p-8 bg-white/90 backdrop-blur-sm border-purple-200 shadow-xl rounded-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <Label htmlFor="x2Coefficient" className="text-lg font-medium text-purple-900">
-                  {t("معامل س²", "X² Coefficient")}
-                </Label>
+        <Card className="p-6 bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg rounded-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="x2Coefficient">{t("معامل س²", "X² Coefficient")}</Label>
                 <Input
                   id="x2Coefficient"
                   type="number"
                   value={input.x2Coefficient}
                   onChange={(e) => handleInputChange("x2Coefficient", e.target.value)}
-                  className="text-lg p-6 border-purple-200 focus:border-purple-400 focus:ring-purple-400 transition-all duration-200"
+                  className="transition-all duration-200 hover:border-gray-400 focus:ring-2 focus:ring-gray-200"
                 />
               </div>
-              <div className="space-y-3">
-                <Label htmlFor="y2Coefficient" className="text-lg font-medium text-purple-900">
-                  {t("معامل ص²", "Y² Coefficient")}
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="y2Coefficient">{t("معامل ص²", "Y² Coefficient")}</Label>
                 <Input
                   id="y2Coefficient"
                   type="number"
                   value={input.y2Coefficient}
                   onChange={(e) => handleInputChange("y2Coefficient", e.target.value)}
-                  className="text-lg p-6 border-purple-200 focus:border-purple-400 focus:ring-purple-400 transition-all duration-200"
+                  className="transition-all duration-200 hover:border-gray-400 focus:ring-2 focus:ring-gray-200"
                 />
               </div>
-              <div className="space-y-3">
-                <Label htmlFor="income" className="text-lg font-medium text-purple-900">
-                  {t("الدخل", "Income")}
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="income">{t("الدخل", "Income")}</Label>
                 <Input
                   id="income"
                   type="number"
                   value={input.income}
                   onChange={(e) => handleInputChange("income", e.target.value)}
-                  className="text-lg p-6 border-purple-200 focus:border-purple-400 focus:ring-purple-400 transition-all duration-200"
+                  className="transition-all duration-200 hover:border-gray-400 focus:ring-2 focus:ring-gray-200"
                 />
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <Label htmlFor="priceX" className="text-lg font-medium text-purple-900">
-                  {t("سعر س", "Price X")}
-                </Label>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="priceX">{t("سعر س", "Price X")}</Label>
                 <Input
                   id="priceX"
                   type="number"
                   value={input.priceX}
                   onChange={(e) => handleInputChange("priceX", e.target.value)}
-                  className="text-lg p-6 border-purple-200 focus:border-purple-400 focus:ring-purple-400 transition-all duration-200"
+                  className="transition-all duration-200 hover:border-gray-400 focus:ring-2 focus:ring-gray-200"
                 />
               </div>
-              <div className="space-y-3">
-                <Label htmlFor="priceY" className="text-lg font-medium text-purple-900">
-                  {t("سعر ص", "Price Y")}
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="priceY">{t("سعر ص", "Price Y")}</Label>
                 <Input
                   id="priceY"
                   type="number"
                   value={input.priceY}
                   onChange={(e) => handleInputChange("priceY", e.target.value)}
-                  className="text-lg p-6 border-purple-200 focus:border-purple-400 focus:ring-purple-400 transition-all duration-200"
+                  className="transition-all duration-200 hover:border-gray-400 focus:ring-2 focus:ring-gray-200"
                 />
               </div>
-              <div className="mt-8">
+              <div className="mt-6">
                 <Button 
                   onClick={handleCalculate}
-                  className="w-full text-lg py-6 bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-200"
+                  className="w-full bg-primary hover:bg-primary/90"
                 >
                   {t("حساب التوازن", "Calculate Equilibrium")}
                 </Button>
@@ -140,19 +130,19 @@ const ConsumerEquilibrium = () => {
           </div>
         </Card>
 
-        <Card className="p-8 bg-white/90 backdrop-blur-sm border-purple-200 shadow-xl rounded-2xl animate-slideIn">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-3 p-6 bg-purple-50 rounded-xl">
-              <p className="text-lg font-medium text-purple-600">{t("الكمية المثلى لـ س", "Optimal X Quantity")}</p>
-              <p className="text-4xl font-bold text-purple-900">{result.optimalX.toFixed(2)}</p>
+        <Card className="p-6 bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg rounded-xl animate-slideIn">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-500">{t("الكمية المثلى لـ س", "Optimal X Quantity")}</p>
+              <p className="text-3xl font-bold text-gray-900">{result.optimalX}</p>
             </div>
-            <div className="space-y-3 p-6 bg-purple-50 rounded-xl">
-              <p className="text-lg font-medium text-purple-600">{t("الكمية المثلى لـ ص", "Optimal Y Quantity")}</p>
-              <p className="text-4xl font-bold text-purple-900">{result.optimalY.toFixed(2)}</p>
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-500">{t("الكمية المثلى لـ ص", "Optimal Y Quantity")}</p>
+              <p className="text-3xl font-bold text-gray-900">{result.optimalY}</p>
             </div>
-            <div className="space-y-3 p-6 bg-purple-50 rounded-xl">
-              <p className="text-lg font-medium text-purple-600">{t("أقصى منفعة", "Maximum Utility")}</p>
-              <p className="text-4xl font-bold text-purple-900">{result.maxUtility.toFixed(2)}</p>
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-gray-500">{t("أقصى منفعة", "Maximum Utility")}</p>
+              <p className="text-3xl font-bold text-gray-900">{result.maxUtility}</p>
             </div>
           </div>
         </Card>
