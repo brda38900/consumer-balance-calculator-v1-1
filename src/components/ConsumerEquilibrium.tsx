@@ -5,8 +5,12 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { calculateEquilibrium } from "@/utils/equilibriumCalculator";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Languages } from "lucide-react";
 
 const ConsumerEquilibrium = () => {
+  const { t, toggleLanguage, language } = useLanguage();
+  
   const [input, setInput] = useState({
     x2Coefficient: 2,
     y2Coefficient: 4,
@@ -30,29 +34,39 @@ const ConsumerEquilibrium = () => {
     try {
       const newResult = calculateEquilibrium(input);
       setResult(newResult);
-      toast.success("تم الحساب بنجاح");
+      toast.success(t("تم الحساب بنجاح", "Calculation successful"));
     } catch (error) {
-      toast.error("الرجاء التحقق من القيم المدخلة");
+      toast.error(t("الرجاء التحقق من القيم المدخلة", "Please check the input values"));
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="max-w-3xl mx-auto space-y-8 animate-fadeIn">
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-            حاسبة توازن المستهلك
-          </h1>
-          <p className="text-gray-500">
-            حساب الكميات المثلى لتحقيق أقصى منفعة
-          </p>
+        <div className="flex justify-between items-center">
+          <div className="text-center space-y-2">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+              {t("حاسبة توازن المستهلك", "Consumer Equilibrium Calculator")}
+            </h1>
+            <p className="text-gray-500">
+              {t("حساب الكميات المثلى لتحقيق أقصى منفعة", "Calculate optimal quantities for maximum utility")}
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={toggleLanguage}
+            className="rounded-full"
+          >
+            <Languages className="h-4 w-4" />
+          </Button>
         </div>
 
         <Card className="p-6 bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg rounded-xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="x2Coefficient">معامل س²</Label>
+                <Label htmlFor="x2Coefficient">{t("معامل س²", "X² Coefficient")}</Label>
                 <Input
                   id="x2Coefficient"
                   type="number"
@@ -62,7 +76,7 @@ const ConsumerEquilibrium = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="y2Coefficient">معامل ص²</Label>
+                <Label htmlFor="y2Coefficient">{t("معامل ص²", "Y² Coefficient")}</Label>
                 <Input
                   id="y2Coefficient"
                   type="number"
@@ -72,7 +86,7 @@ const ConsumerEquilibrium = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="income">الدخل</Label>
+                <Label htmlFor="income">{t("الدخل", "Income")}</Label>
                 <Input
                   id="income"
                   type="number"
@@ -85,7 +99,7 @@ const ConsumerEquilibrium = () => {
 
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="priceX">سعر س</Label>
+                <Label htmlFor="priceX">{t("سعر س", "Price X")}</Label>
                 <Input
                   id="priceX"
                   type="number"
@@ -95,7 +109,7 @@ const ConsumerEquilibrium = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="priceY">سعر ص</Label>
+                <Label htmlFor="priceY">{t("سعر ص", "Price Y")}</Label>
                 <Input
                   id="priceY"
                   type="number"
@@ -109,7 +123,7 @@ const ConsumerEquilibrium = () => {
                   onClick={handleCalculate}
                   className="w-full bg-primary hover:bg-primary/90"
                 >
-                  حساب التوازن
+                  {t("حساب التوازن", "Calculate Equilibrium")}
                 </Button>
               </div>
             </div>
@@ -119,15 +133,15 @@ const ConsumerEquilibrium = () => {
         <Card className="p-6 bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg rounded-xl animate-slideIn">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-500">الكمية المثلى لـ س</p>
+              <p className="text-sm font-medium text-gray-500">{t("الكمية المثلى لـ س", "Optimal X Quantity")}</p>
               <p className="text-3xl font-bold text-gray-900">{result.optimalX}</p>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-500">الكمية المثلى لـ ص</p>
+              <p className="text-sm font-medium text-gray-500">{t("الكمية المثلى لـ ص", "Optimal Y Quantity")}</p>
               <p className="text-3xl font-bold text-gray-900">{result.optimalY}</p>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-500">أقصى منفعة</p>
+              <p className="text-sm font-medium text-gray-500">{t("أقصى منفعة", "Maximum Utility")}</p>
               <p className="text-3xl font-bold text-gray-900">{result.maxUtility}</p>
             </div>
           </div>
