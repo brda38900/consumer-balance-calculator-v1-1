@@ -2,28 +2,35 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { calculateEquilibrium } from "@/utils/equilibriumCalculator";
 import { toast } from "sonner";
 
 const ConsumerEquilibrium = () => {
   const [input, setInput] = useState({
-    x2Coefficient: 2, // معامل س²
-    y2Coefficient: 4, // معامل ص²
-    income: 198, // الدخل
-    priceX: 6, // سعر س
-    priceY: 15, // سعر ص
+    x2Coefficient: 2,
+    y2Coefficient: 4,
+    income: 198,
+    priceX: 6,
+    priceY: 15,
   });
 
-  const [result, setResult] = useState(() => calculateEquilibrium(input));
+  const [result, setResult] = useState({
+    optimalX: 0,
+    optimalY: 0,
+    maxUtility: 0
+  });
 
   const handleInputChange = (field: string, value: string) => {
     const numValue = parseFloat(value) || 0;
-    const newInput = { ...input, [field]: numValue };
-    setInput(newInput);
-    
+    setInput(prev => ({ ...prev, [field]: numValue }));
+  };
+
+  const handleCalculate = () => {
     try {
-      const newResult = calculateEquilibrium(newInput);
+      const newResult = calculateEquilibrium(input);
       setResult(newResult);
+      toast.success("تم الحساب بنجاح");
     } catch (error) {
       toast.error("الرجاء التحقق من القيم المدخلة");
     }
@@ -96,6 +103,14 @@ const ConsumerEquilibrium = () => {
                   onChange={(e) => handleInputChange("priceY", e.target.value)}
                   className="transition-all duration-200 hover:border-gray-400 focus:ring-2 focus:ring-gray-200"
                 />
+              </div>
+              <div className="mt-6">
+                <Button 
+                  onClick={handleCalculate}
+                  className="w-full bg-primary hover:bg-primary/90"
+                >
+                  حساب التوازن
+                </Button>
               </div>
             </div>
           </div>
