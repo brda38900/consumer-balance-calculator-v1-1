@@ -54,11 +54,14 @@ const ConsumerEquilibrium = () => {
           </div>
           <Button
             variant="outline"
-            size="icon"
+            size="lg"
             onClick={toggleLanguage}
-            className="rounded-full"
+            className="rounded-full hover:bg-primary/10 transition-all duration-300 gap-2 shadow-sm"
           >
-            <Languages className="h-4 w-4" />
+            <Languages className="h-5 w-5" />
+            <span className="font-medium">
+              {language === 'ar' ? 'English' : 'العربية'}
+            </span>
           </Button>
         </div>
 
